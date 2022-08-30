@@ -1,0 +1,33 @@
+<!-- Form Section -->
+<form [formGroup] = "penaltyForm" style="margin: 30px 300px 0px 300px">
+    <div class="card">
+        <div class="card-head">
+            <h2 style="text-align: center; background-color:black; color: white; padding: 10px 0px 10px 0px;">Penalty Calculator</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="issueDate"><b>Issue Date</b></label>
+                <input type="date" class="form-control" id="issueDate" formControlName="issueDate" aria-describedby="issueDate">
+            </div>
+            <div class="form-group">
+                <label for="returnDate"><b>Return Date</b></label>
+                <input type="date" class="form-control" id="returnDate" formControlName="returnDate" aria-describedby="returnDate">
+            </div>
+                <div class="form-group">
+                  <label>Country</label>
+                  <select class="form-control" (change) = "giveCountryId()" formControlName="country" >
+                    <option disabled>--Select--</option>
+                    <option *ngFor="let country of countries" [ngValue]="country">{{country.countryName}}</option>
+                  </select>
+                </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px;" (click)="calculatePenalty()" [disabled]="!penaltyForm.valid">Calculate Penalty</button>
+  </form>
+
+  <!-- *ngFor="let item of tempobj" value="{{item.name}}" -->
+  <!-- Section for the display of results -->
+
+  <hr>
+  <h5>The total business days are: <span><b>{{recievedPenalty.businessDays}}</b></span></h5>
+  <h5>The total business days are: <span><b>{{recievedPenalty.penaltyAmount}}</b></span></h5>
